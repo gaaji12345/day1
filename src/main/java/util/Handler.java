@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class Handler {
+public class Handler extends Thread {
     private ArrayList<Handler> clients;
     private Socket socket;
     private BufferedReader reader;

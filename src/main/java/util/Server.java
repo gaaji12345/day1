@@ -9,7 +9,7 @@ public class Server {
 
     private static ArrayList<Handler> clients = new ArrayList<>();
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(2993);
+        ServerSocket serverSocket = new ServerSocket(2994);
 
         Socket accept;
         System.out.println("server waiting");

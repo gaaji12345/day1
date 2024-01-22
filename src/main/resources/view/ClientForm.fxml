@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="AncMain" prefHeight="704.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientFormController">
+   <children>
+      <ImageView fitHeight="704.0" fitWidth="455.0" layoutY="11.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assecsts/omid-armin-spYYjjazRXI-unsplash.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="75.0" prefWidth="454.0" style="-fx-background-color: black;">
+         <children>
+            <Label fx:id="lblText" layoutX="135.0" layoutY="18.0" prefHeight="38.0" prefWidth="199.0" style="-fx-background-color: white;" text="  CLIENT">
+               <font>
+                  <Font name="System Bold Italic" size="31.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assecsts/8380015-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ScrollPane fx:id="Spane" layoutX="9.0" layoutY="84.0" prefHeight="556.0" prefWidth="437.0">
+         <content>
+            <VBox fx:id="vbox" prefHeight="550.0" prefWidth="433.0" />
+         </content>
+      </ScrollPane>
+      <TextField fx:id="txtField" layoutX="32.0" layoutY="649.0" prefHeight="33.0" prefWidth="363.0" promptText="typee....." />
+      <ImageView fitHeight="33.0" fitWidth="38.0" layoutX="401.0" layoutY="649.0" onMouseClicked="#btnSendOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assecsts/2343805-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="22.0" fitWidth="33.0" layoutX="366.0" layoutY="655.0" onMouseClicked="#btnCamOnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assecsts/png-transparent-black-and-gray-camera-icon-computer-icons-camera-iphone-graphy-camera-camera-lens-rectangle-mobile-phones-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
