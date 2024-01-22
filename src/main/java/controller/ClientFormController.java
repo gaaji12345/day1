@@ -1,17 +1,27 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 
 import java.io.*;
 import java.net.Socket;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class ClientFormController  extends Thread{
     public Label lblText;
@@ -50,6 +60,149 @@ public class ClientFormController  extends Thread{
             }
         });
 
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (true) {
+
+
+                String msg = reader.readLine();
+                String[] tokens = msg.split(" ");
+                String cmd = tokens[0];
+
+                System.out.println(cmd);
+                StringBuilder fullMsg = new StringBuilder();
+                for (int i = 1; i < tokens.length; i++) {
+                    fullMsg.append(tokens[i] + " ");
+                }
+                System.out.println(fullMsg);
+
+                String[] msgToAr = msg.split(" ");
+                String st = "";
+                for (int i = 0; i < msgToAr.length - 1; i++) {
+                    st += msgToAr[i + 1] + " ";
+                }
+
+                System.out.println(st);
+                Text text = new Text(st);
+                String firstChars = "";
+                if (st.length() > 3) {
+                    firstChars = st.substring(0, 3);
+
+                }
+                //get 3 chars only
+
+                System.out.println(firstChars);
+
+                if (firstChars.equalsIgnoreCase("img")) {
+                    //for the Images
+
+                    st = st.substring(3, st.length() - 1);
+
+
+                    File file = new File(st);
+                    Image image = new Image(file.toURI().toString());
+
+                    ImageView imageView = new ImageView(image);
+
+                    imageView.setFitHeight(150);
+                    imageView.setFitWidth(200);
+
+
+                    HBox hBox = new HBox(10);
+                    hBox.setAlignment(Pos.BOTTOM_RIGHT);
+
+
+                    if (!cmd.equalsIgnoreCase(lblText.getText())) {
+
+                        vbox.setAlignment(Pos.TOP_LEFT);
+                        hBox.setAlignment(Pos.CENTER_LEFT);
+
+
+                        Text text1 = new Text("  " + cmd + " :");
+                        hBox.getChildren().add(text1);
+                        hBox.getChildren().add(imageView);
+
+                    } else {
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.getChildren().add(imageView);
+                        Text text1 = new Text("");
+                        hBox.getChildren().add(text1);
+
+                    }
+
+                    Platform.runLater(() -> vbox.getChildren().addAll(hBox));
+
+
+                } else {
+
+                    TextFlow tempFlow = new TextFlow();
+
+                    if (!cmd.equalsIgnoreCase(lblText.getText() + ":")) {
+                        Text txtName = new Text(cmd + " ");
+                        txtName.getStyleClass().add("txtName");
+                        tempFlow.getChildren().add(txtName);
+
+                        HBox hBoxTime = new HBox();//1
+                        hBoxTime.setAlignment(Pos.CENTER_RIGHT);
+                        hBoxTime.setPadding(new Insets(0,5,5,10));
+                        String stringTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+                        Text time = new Text(stringTime);
+                        time.setStyle("-fx-font-size: 8");//l
+
+
+                        tempFlow.setStyle("-fx-color: rgb(239,242,255);" +
+                                "-fx-background-color: rgb(28,92,255);" +
+                                " -fx-background-radius: 10px");
+                        tempFlow.setPadding(new Insets(3, 10, 3, 10));
+                    }
+
+                    tempFlow.getChildren().add(text);
+                    tempFlow.setMaxWidth(200); //200
+
+                    TextFlow flow = new TextFlow(tempFlow);
+
+                    HBox hBox = new HBox(12); //12
+
+
+                    if (!cmd.equalsIgnoreCase(lblText.getText() + ":")) {
+
+
+                        vbox.setAlignment(Pos.TOP_LEFT);
+                        hBox.setAlignment(Pos.CENTER_LEFT);
+                        hBox.getChildren().add(flow);
+
+                    } else {
+
+                        Text text2 = new Text(fullMsg + " ");
+                        TextFlow flow2 = new TextFlow(text2);
+                        hBox.setAlignment(Pos.BOTTOM_RIGHT);
+                        hBox.getChildren().add(flow2);
+                        hBox.setPadding(new Insets(2, 5, 2, 10));
+
+
+                        HBox hBoxTime = new HBox();//1
+                        hBoxTime.setAlignment(Pos.CENTER_RIGHT);
+                        hBoxTime.setPadding(new Insets(0,5,5,10));
+                        String stringTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+                        Text time = new Text(stringTime);
+                        time.setStyle("-fx-font-size: 8");//L
+
+                        flow2.setStyle("-fx-color: rgb(239,242,255);" +
+                                "-fx-background-color: rgb(191,241,9);" +
+                                "-fx-background-radius: 10px");
+                        flow2.setPadding(new Insets(3, 10, 3, 10));
+                    }
+
+                    Platform.runLater(() -> vbox.getChildren().addAll(hBox));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
