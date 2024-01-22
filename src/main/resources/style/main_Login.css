@@ -1,0 +1,23 @@
+#txtLogin{
+    -fx-background-color: #ff9100;
+}
+#txtLogin:hover{
+    -fx-background-color: #18ad18;
+
+}
+#txtLogin:pressed{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+#txtField{
+    -fx-background-color:transparent;
+    -fx-border-color: transparent transparent black transparent;
+    -fx-border-width: 2px;
+}
+#txtField{
+    -fx-border-color: transparent transparent black transparent;
+}
+#txtLogin{
+    -fx-background-radius: 8px;
+    -fx-border-radius: black;
+}
