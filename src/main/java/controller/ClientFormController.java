@@ -5,6 +5,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -17,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.Socket;
@@ -43,7 +45,7 @@ public class ClientFormController  extends Thread{
         String userName=LoginFormController.username;
         lblText.setText(userName);
         try {
-            socket = new Socket("localhost", 2993);
+            socket = new Socket("localhost", 2995);
             System.out.println("Socket is connected with server!");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -208,8 +210,24 @@ public class ClientFormController  extends Thread{
 
 
     public void btnSendOnAction(MouseEvent mouseEvent) {
+
+        String msg = txtField.getText();
+        writer.println(lblText.getText() + ": " + msg);
+
+        txtField.clear();
+
+
+        if(msg.equalsIgnoreCase("BYE") || (msg.equalsIgnoreCase("logout"))) {
+            System.exit(0);
+
+        }
     }
 
     public void btnCamOnAction(MouseEvent mouseEvent) {
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image");
+        this.filePath = fileChooser.showOpenDialog(stage);
+        writer.println(lblText.getText() + " " + "img" + filePath.getPath());
     }
 }
