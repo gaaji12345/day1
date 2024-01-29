@@ -31,6 +31,7 @@ public class ClientFormController  extends Thread{
     public TextField txtField;
     public VBox vbox;
     public AnchorPane AncMain;
+    public AnchorPane emojiAnc;
 
     private FileChooser fileChooser;
     private File filePath;
@@ -45,7 +46,7 @@ public class ClientFormController  extends Thread{
         String userName=LoginFormController.username;
         lblText.setText(userName);
         try {
-            socket = new Socket("localhost", 2998);
+            socket = new Socket("localhost", 2994);
             System.out.println("Socket is connected with server!");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -55,12 +56,13 @@ public class ClientFormController  extends Thread{
             e.printStackTrace();
 
         }
-        this.vbox.heightProperty().addListener(new ChangeListener<Number>() {
+       /* this.vbox.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
                 Spane.setVvalue((Double) newValue);
             }
-        });
+        });*/
+        emojiAnc.setVisible(false);
 
     }
 
@@ -233,5 +235,22 @@ public class ClientFormController  extends Thread{
 
     public void OffOnAction(MouseEvent mouseEvent) {
         System.exit(0);
+    }
+
+    public void emoji_OnAction(MouseEvent mouseEvent) {
+        emojiAnc.setVisible(true);
+    }
+
+    public void smile_emo(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128540));
+       txtField.setText(emoji);
+       emojiAnc.setVisible(false);
+    }
+
+    public void emo_grid(MouseEvent mouseEvent) {
+    }
+
+    public void hide_emoji(MouseEvent mouseEvent) {
+        emojiAnc.setVisible(false);
     }
 }
