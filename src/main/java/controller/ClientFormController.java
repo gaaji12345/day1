@@ -45,7 +45,7 @@ public class ClientFormController  extends Thread{
         String userName=LoginFormController.username;
         lblText.setText(userName);
         try {
-            socket = new Socket("localhost", 2995);
+            socket = new Socket("localhost", 2998);
             System.out.println("Socket is connected with server!");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -229,5 +229,9 @@ public class ClientFormController  extends Thread{
         fileChooser.setTitle("Open Image");
         this.filePath = fileChooser.showOpenDialog(stage);
         writer.println(lblText.getText() + " " + "img" + filePath.getPath());
+    }
+
+    public void OffOnAction(MouseEvent mouseEvent) {
+        System.exit(0);
     }
 }
