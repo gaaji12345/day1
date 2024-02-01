@@ -46,7 +46,7 @@ public class ClientFormController  extends Thread{
         String userName=LoginFormController.username;
         lblText.setText(userName);
         try {
-            socket = new Socket("localhost", 2994);
+            socket = new Socket("localhost", 2991);
             System.out.println("Socket is connected with server!");
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             writer = new PrintWriter(socket.getOutputStream(), true);
@@ -252,5 +252,37 @@ public class ClientFormController  extends Thread{
 
     public void hide_emoji(MouseEvent mouseEvent) {
         emojiAnc.setVisible(false);
+    }
+
+    public void eyeopen_sad(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128546));
+       txtField.setText(emoji);
+        emojiAnc.setVisible(false);
+
+    }
+
+    public void soSad_emo(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128539));
+        txtField.setText(emoji);
+        emojiAnc.setVisible(false);
+    }
+
+    public void tongOut_emo(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128539));
+        txtField.setText(emoji);
+        emojiAnc.setVisible(false);
+    }
+
+    public void sick_emo(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128560));
+        txtField.setText(emoji);
+        emojiAnc.setVisible(false);
+    }
+
+    public void happy_emo(MouseEvent mouseEvent) {
+        String emoji = new String(Character.toChars(128560));
+        txtField.setText(emoji);
+        emojiAnc.setVisible(false);
+
     }
 }

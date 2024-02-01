@@ -6,20 +6,22 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="AncMain" prefHeight="704.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientFormController">
+<AnchorPane fx:id="AncMain" prefHeight="705.0" prefWidth="455.0" stylesheets="@../style/main_client.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientFormController">
    <children>
       <ImageView fitHeight="704.0" fitWidth="455.0" layoutY="11.0" pickOnBounds="true">
          <image>
             <Image url="@../assecsts/omid-armin-spYYjjazRXI-unsplash.jpg" />
          </image>
       </ImageView>
-      <AnchorPane prefHeight="75.0" prefWidth="454.0" style="-fx-background-color: black;">
+      <AnchorPane layoutX="1.0" prefHeight="75.0" prefWidth="454.0" style="-fx-background-color: ash;">
          <children>
-            <Label fx:id="lblText" layoutX="135.0" layoutY="18.0" prefHeight="38.0" prefWidth="199.0" style="-fx-background-color: white;" text="  CLIENT">
+            <Label fx:id="lblText" layoutX="139.0" layoutY="19.0" prefHeight="38.0" prefWidth="139.0" style="-fx-background-color: white;" text="  CLIENT">
                <font>
                   <Font name="System Bold Italic" size="31.0" />
                </font>
@@ -29,14 +31,19 @@
                   <Image url="@../assecsts/8380015-removebg-preview.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="48.0" layoutX="395.0" layoutY="19.0" onMouseClicked="#OffOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assecsts/426462-PE3URK-202-removebg-preview.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
+      <TextField fx:id="txtField" layoutX="80.0" layoutY="649.0" onMouseClicked="#hide_emoji" prefHeight="33.0" prefWidth="315.0" promptText="typee....." />
       <ScrollPane fx:id="Spane" layoutX="9.0" layoutY="84.0" prefHeight="556.0" prefWidth="437.0">
          <content>
             <VBox fx:id="vbox" prefHeight="550.0" prefWidth="433.0" />
          </content>
       </ScrollPane>
-      <TextField fx:id="txtField" layoutX="32.0" layoutY="649.0" prefHeight="33.0" prefWidth="363.0" promptText="typee....." />
       <ImageView fitHeight="33.0" fitWidth="38.0" layoutX="401.0" layoutY="649.0" onMouseClicked="#btnSendOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assecsts/2343805-removebg-preview.png" />
@@ -47,5 +54,56 @@
             <Image url="@../assecsts/png-transparent-black-and-gray-camera-icon-computer-icons-camera-iphone-graphy-camera-camera-lens-rectangle-mobile-phones-removebg-preview.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="82.0" fitWidth="53.0" layoutX="14.0" layoutY="643.0" onMouseClicked="#emoji_OnAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assecsts/8864305-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="emojiAnc" layoutX="9.0" layoutY="415.0" prefHeight="229.0" prefWidth="188.0" style="-fx-background-color: gray; -fx-background-radius: 15;">
+         <children>
+            <GridPane layoutX="14.0" layoutY="9.0" onMouseClicked="#emo_grid" prefHeight="213.0" prefWidth="162.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="91.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.0" minWidth="10.0" prefWidth="95.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="69.0" fitWidth="59.0" onMouseClicked="#smile_emo" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../emoji/smile_real.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="51.0" fitWidth="48.0" onMouseClicked="#eyeopen_sad" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@../emoji/baww.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="47.0" fitWidth="48.0" onMouseClicked="#soSad_emo" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../emoji/sad_eye_close.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="73.0" fitWidth="57.0" onMouseClicked="#tongOut_emo" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../emoji/tong_face.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="55.0" fitWidth="52.0" onMouseClicked="#sick_emo" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../emoji/blaaaak.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="68.0" onMouseClicked="#happy_emo" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../emoji/smile_eye_close.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </children></AnchorPane>
    </children>
 </AnchorPane>
